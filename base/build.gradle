@@ -1,0 +1,40 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api "com.android.support:appcompat-v7:$supportVersion"
+    api "com.android.support:design:$supportVersion"
+    api "com.android.support:support-vector-drawable:$supportVersion"
+    api "com.android.support.constraint:constraint-layout:$constraintLayout"
+
+    testImplementation "junit:junit:$junit"
+    androidTestImplementation "com.android.support.test:runner:$testRunner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$testEspresso"
+}
