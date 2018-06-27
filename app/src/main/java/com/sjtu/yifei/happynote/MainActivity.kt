@@ -3,6 +3,7 @@ package com.sjtu.yifei.happynote
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import com.sjtu.yifei.base.util.setupActionBar
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -28,6 +29,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        // Set up the toolbar.
+        setupActionBar(R.id.toolbar) {
+            setDisplayHomeAsUpEnabled(false)
+            setDisplayShowHomeEnabled(true)
+            setTitle(R.string.app_name)
+        }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
