@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import com.sjtu.yifei.base.util.setupActionBar
+import com.sjtu.yifei.route.Routerfit
+import gl.center.testrouter.router.RouterService
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -29,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        // Set up the toolbar.
         setupActionBar(R.id.toolbar) {
             setDisplayHomeAsUpEnabled(false)
             setDisplayShowHomeEnabled(true)
@@ -37,5 +38,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        fab.setOnClickListener { view ->
+            //打开编辑器
+            Routerfit.register(RouterService::class.java).openEditorUi()
+        }
     }
 }
