@@ -1,9 +1,19 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<com.sjtu.yifei.base.view.MyViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment"
+    android:id="@+id/rl_root"
     android:name="com.sjtu.yifei.editor.ui.EditorFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:layout="@layout/fragment_editor" />
+    tools:layout="@layout/fragment_editor" >
+
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="测试事件分发"
+        android:textSize="18sp"/>
+
+</com.sjtu.yifei.base.view.MyViewGroup>

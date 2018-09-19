@@ -3,12 +3,13 @@ package com.sjtu.yifei.happynote
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import com.sjtu.yifei.base.BaseActivity
 import com.sjtu.yifei.base.util.setupActionBar
 import com.sjtu.yifei.route.Routerfit
 import gl.center.testrouter.router.RouterService
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -38,9 +39,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        fab.setOnClickListener { view ->
+        fab.setOnClickListener { _->
             //打开编辑器
             Routerfit.register(RouterService::class.java).openEditorUi()
         }
     }
+
 }

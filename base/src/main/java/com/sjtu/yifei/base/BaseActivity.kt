@@ -1,6 +1,7 @@
 package com.sjtu.yifei.base
 
 import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 
 /**
  * 类描述：
@@ -12,4 +13,13 @@ import android.support.v7.app.AppCompatActivity
  */
 open class BaseActivity: AppCompatActivity() {
 
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val id = item?.itemId
+        if (android.R.id.home == id) {
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }
