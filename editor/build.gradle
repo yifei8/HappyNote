@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -25,9 +25,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path:':router', configuration: 'default')
-    api project(path:':base', configuration: 'default')
     kapt yifei.auto_complier
+    api project(path:':router')
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner
