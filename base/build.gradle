@@ -26,6 +26,8 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
+    api cp.kotlin_stdlib
+
     // Support libraries
     api support.annotations
     api support.app_compat
@@ -35,14 +37,12 @@ dependencies {
     api support.v4
     api support.cl
 
-//    api yifei.autoApi
-
     // retrofit & rxandroid
     api net.retrofit
     api net.adapter_rxjava2
     api net.converter_gson
     api net.rxandroid
-//    api net.logging_interceptor
+    api net.logging_interceptor
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner

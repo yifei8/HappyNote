@@ -1,6 +1,6 @@
 def versions = [:]
-versions.android_gradle_plugin = "3.0.1"
-versions.kotlin_version = '1.2.10'
+versions.android_gradle_plugin = "3.1.4"
+versions.kotlin_version = '1.2.51'
 versions.compileSdkVersion = 27
 
 versions.min_sdk = 16
@@ -25,6 +25,7 @@ def cp = [:]
 cp.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
 cp.kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin_version"
 cp.autoInject = "com.sjtu.yifei:auto-inject:$versions.autoInject"
+cp.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin_version"
 ext.cp = cp
 
 def support = [:]
@@ -59,10 +60,11 @@ ext.testSupport = testSupport
 
 
 def addRepos(RepositoryHandler handler) {
-    handler.maven { url 'https://dl.bintray.com/iyifei/maven' }
-    handler.maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     handler.mavenCentral()
     handler.google()
     handler.jcenter()
+    handler.maven { url 'https://dl.bintray.com/iyifei/maven' }
+    handler.maven { url "https://jitpack.io" }
+    handler.maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
 }
 ext.addRepos = this.&addRepos
