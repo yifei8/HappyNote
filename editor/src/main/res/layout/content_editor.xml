@@ -1,4 +1,4 @@
-<com.sjtu.yifei.base.view.MyViewGroup xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rl_root"
@@ -16,4 +16,4 @@
         android:text="测试事件分发"
         android:textSize="18sp"/>
 
-</com.sjtu.yifei.base.view.MyViewGroup>
+</RelativeLayout>

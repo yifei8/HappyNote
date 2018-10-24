@@ -1,8 +1,0 @@
-<resources>
-    <declare-styleable name="MyViewGroup">
-        <attr name="viewGroupString" format="string" />
-        <attr name="viewGroupDimension" format="dimension" />
-        <attr name="viewGroupColor" format="color" />
-        <attr name="viewGroupDrawable" format="color|reference" />
-    </declare-styleable>
-</resources>

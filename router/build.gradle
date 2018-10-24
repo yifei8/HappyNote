@@ -1,22 +1,17 @@
-apply plugin: 'com.android.library'
-
+apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-kapt'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.sjtu.yifei.autoinject'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion versions.compileSdkVersion
 
     defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        minSdkVersion versions.min_sdk
+        targetSdkVersion versions.target_sdk
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -30,14 +25,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    kapt "com.sjtu.yifei:auto-complier:$autoComplier"
-    api "com.sjtu.yifei:auto-api:$autoApi"
+    kapt yifei.auto_complier
+    api  yifei.autoApi
 
-    testImplementation "junit:junit:$junit"
-    androidTestImplementation "com.android.support.test:runner:$testRunner"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:$testEspresso"
-    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-}
-repositories {
-    mavenCentral()
+    testImplementation testSupport.junit
+    androidTestImplementation testSupport.testRunner
+    androidTestImplementation testSupport.testEspresso
 }
