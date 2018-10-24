@@ -15,7 +15,7 @@ versions.autoComplier = '0.0.9'
 versions.autoInject = '0.0.5'
 versions.retrofit2 = '2.4.0'
 versions.rxandroid = '2.1.0'
-versions.logging_interceptor = '2.1.0'
+versions.logging_interceptor = '3.3.1'
 versions.junit = '4.12'
 versions.testRunner = '1.0.2'
 versions.testEspresso = '3.0.2'
@@ -60,11 +60,11 @@ ext.testSupport = testSupport
 
 
 def addRepos(RepositoryHandler handler) {
+    handler.maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    handler.maven { url 'https://dl.bintray.com/iyifei/maven' }
+    handler.maven { url "https://jitpack.io" }
     handler.mavenCentral()
     handler.google()
     handler.jcenter()
-    handler.maven { url 'https://dl.bintray.com/iyifei/maven' }
-    handler.maven { url "https://jitpack.io" }
-    handler.maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
 }
 ext.addRepos = this.&addRepos
