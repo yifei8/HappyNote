@@ -36,8 +36,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(':editor')
-    implementation project(':router')
+    implementation project(path:':editor', configuration: 'default')
+    implementation project(path:':router', configuration: 'default')
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner

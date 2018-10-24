@@ -40,7 +40,7 @@ ext.support = support
 
 def yifei = [:]
 yifei.auto_complier = "com.sjtu.yifei:auto-complier:$versions.autoComplier"
-yifei.autoApi = "com.sjtu.yifei:auto-complier:$versions.autoApi"
+yifei.autoApi = "com.sjtu.yifei:auto-api:$versions.autoApi"
 ext.yifei = yifei
 
 // retrofit & rxandroid
@@ -60,8 +60,8 @@ ext.testSupport = testSupport
 
 
 def addRepos(RepositoryHandler handler) {
-    handler.maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     handler.maven { url 'https://dl.bintray.com/iyifei/maven' }
+    handler.maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
     handler.maven { url "https://jitpack.io" }
     handler.mavenCentral()
     handler.google()
