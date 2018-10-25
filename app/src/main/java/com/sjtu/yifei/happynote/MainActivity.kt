@@ -14,6 +14,9 @@ class MainActivity : BaseActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 message.setText(R.string.title_home)
+                message.setOnClickListener {
+                    Routerfit.register(RouterService::class.java).openEyesUi()
+                }
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
@@ -25,9 +28,6 @@ class MainActivity : BaseActivity() {
             }
             R.id.navigation_notifications -> {
                 message.setText(R.string.title_notifications)
-                message.setOnClickListener {
-                    Routerfit.register(RouterService::class.java).openEyesUi()
-                }
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -44,7 +44,7 @@ class MainActivity : BaseActivity() {
         }
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        fab.setOnClickListener { _->
+        fab.setOnClickListener { _ ->
             //打开编辑器
         }
     }

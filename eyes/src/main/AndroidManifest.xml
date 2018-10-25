@@ -5,6 +5,7 @@
     <application>
         <activity
             android:name=".ui.EyesActivity"
+            android:label="@string/title_activity_eyes"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

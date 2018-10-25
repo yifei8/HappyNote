@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">eyes</string>
+    <string name="title_activity_eyes">EyesActivity</string>
 </resources>
