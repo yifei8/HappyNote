@@ -51,6 +51,30 @@
         <option value="base_debug" />
         <option value="base_debug" />
         <option value="base_debug" />
+        <option value="app_debug" />
+        <option value="base_debug" />
+        <option value="editor_debug" />
+        <option value="router_debug" />
+        <option value="app_debug" />
+        <option value="base_debug" />
+        <option value="editor_debug" />
+        <option value="router_debug" />
+        <option value="app_debug" />
+        <option value="base_debug" />
+        <option value="editor_debug" />
+        <option value="router_debug" />
+        <option value="app_debug" />
+        <option value="base_debug" />
+        <option value="editor_debug" />
+        <option value="router_debug" />
+        <option value="app_debug" />
+        <option value="base_debug" />
+        <option value="editor_debug" />
+        <option value="router_debug" />
+        <option value="app_debug" />
+        <option value="base_debug" />
+        <option value="editor_debug" />
+        <option value="router_debug" />
       </list>
     </option>
   </component>

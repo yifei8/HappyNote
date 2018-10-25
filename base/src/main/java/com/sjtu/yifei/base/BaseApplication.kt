@@ -1,6 +1,8 @@
 package com.sjtu.yifei.base
 
 import android.app.Application
+import android.content.Context
+import kotlin.properties.Delegates
 
 /**
  * 类描述：
@@ -10,6 +12,17 @@ import android.app.Application
  * 修改时间：
  * 修改备注：
  */
-open class BaseApplication: Application() {
+open class BaseApplication : Application() {
+
+    companion object {
+        var context: Context by Delegates.notNull()
+        var token: String by Delegates.notNull()
+    }
+
+    override fun onCreate() {
+        super.onCreate()
+        context = applicationContext
+        token = ""
+    }
 
 }

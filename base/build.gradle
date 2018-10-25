@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.sjtu.yifei.autoinject'
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -27,6 +26,9 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
     api cp.kotlin_stdlib
+
+    kapt yifei.auto_complier
+    api yifei.auto_api
 
     // Support libraries
     api support.annotations

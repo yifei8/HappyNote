@@ -4,6 +4,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.sjtu.yifei.autoinject'
+autoinject {
+    isDebug = true //是否在gradle console 中输出transform log
+}
+
 android {
     compileSdkVersion versions.compileSdkVersion
 
@@ -15,6 +20,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -34,16 +44,12 @@ android {
 
 }
 
-apply plugin: 'com.sjtu.yifei.autoinject'
-autoinject {
-    isDebug = true //是否在gradle console 中输出transform log
-}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     kapt yifei.auto_complier
+
     implementation project(path:':editor')
-    implementation project(path:':router')
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner

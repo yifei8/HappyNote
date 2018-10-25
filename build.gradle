@@ -7,6 +7,9 @@ buildscript {
         classpath cp.kotlin_gradle_plugin
         classpath cp.autoInject
     }
+    repositories {
+        google()
+    }
 }
 
 allprojects {

@@ -2,7 +2,6 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.sjtu.yifei.autoinject'
 
 android {
     compileSdkVersion versions.compileSdkVersion
@@ -12,11 +11,6 @@ android {
         targetSdkVersion versions.target_sdk
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -30,10 +24,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path:':base')
-
-    api yifei.autoApi
     kapt yifei.auto_complier
+    api project(path:':base')
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner

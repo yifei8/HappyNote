@@ -1,5 +1,5 @@
 def versions = [:]
-versions.android_gradle_plugin = "3.1.4"
+versions.android_gradle_plugin = '3.2.1'
 versions.kotlin_version = '1.2.51'
 versions.compileSdkVersion = 27
 
@@ -23,9 +23,11 @@ ext.versions = versions
 
 def cp = [:]
 cp.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+
 cp.kotlin_gradle_plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin_version"
+cp.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin_version"
+
 cp.autoInject = "com.sjtu.yifei:auto-inject:$versions.autoInject"
-cp.kotlin_stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$versions.kotlin_version"
 ext.cp = cp
 
 def support = [:]
@@ -40,7 +42,7 @@ ext.support = support
 
 def yifei = [:]
 yifei.auto_complier = "com.sjtu.yifei:auto-complier:$versions.autoComplier"
-yifei.autoApi = "com.sjtu.yifei:auto-api:$versions.autoApi"
+yifei.auto_api = "com.sjtu.yifei:auto-api:$versions.autoApi"
 ext.yifei = yifei
 
 // retrofit & rxandroid
