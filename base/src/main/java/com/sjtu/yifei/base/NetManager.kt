@@ -12,7 +12,7 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-/**
+/**https://github.com/git-xuhao/KotlinMvp.git
  * 类描述：
  * 创建人：yifei
  * 创建时间：2018/10/23
@@ -22,7 +22,13 @@ import java.util.concurrent.TimeUnit
  */
 class NetManager private constructor() {
 
-    var retrofitBuilder: Retrofit.Builder
+    companion object {
+        val instance: NetManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            NetManager()
+        }
+    }
+
+    private var retrofitBuilder: Retrofit.Builder
 
     init {//构造函数
         retrofitBuilder = Retrofit.Builder()
@@ -114,10 +120,4 @@ class NetManager private constructor() {
         }
     }
 
-    companion object {
-        val instance: NetManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            NetManager()
-        }
-
-    }
 }

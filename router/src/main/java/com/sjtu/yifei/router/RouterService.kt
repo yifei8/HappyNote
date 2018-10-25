@@ -1,13 +1,17 @@
-package gl.center.testrouter.router
+package com.sjtu.yifei.router
 
 import com.sjtu.yifei.annotation.Go
-import gl.center.testrouter.router.RouterPath.LAUNCHER_EDITOR
-import gl.center.testrouter.router.RouterPath.NEED_LOGIN
+import com.sjtu.yifei.router.RouterPath.LAUNCHER_EDITOR
+import com.sjtu.yifei.router.RouterPath.LAUNCHER_EYES
+import com.sjtu.yifei.router.RouterPath.NEED_LOGIN
 
 interface RouterService {
 
     @Go(LAUNCHER_EDITOR)
     fun openEditorUi():Boolean
+
+    @Go(LAUNCHER_EYES)
+    fun openEyesUi():Boolean
 
     @Go(NEED_LOGIN)
     fun getILoginProviderImpl(): ILoginProvider

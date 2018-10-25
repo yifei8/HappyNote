@@ -6,10 +6,10 @@ import com.sjtu.yifei.annotation.Route
 import com.sjtu.yifei.base.BaseActivity
 import com.sjtu.yifei.base.util.setupActionBar
 import com.sjtu.yifei.editor.R
-import gl.center.testrouter.router.RouterPath.LAUNCHER_EDITOR
+import com.sjtu.yifei.router.RouterPath.LAUNCHER_EDITOR
 
 @Route(path = LAUNCHER_EDITOR)
-class EditorActivity : BaseActivity() {
+open class EditorActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
