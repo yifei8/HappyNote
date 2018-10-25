@@ -1,1 +1,1 @@
-include ':app', ':base', ':router', ':editor', ':eyes'
+include ':app', ':base', ':router', ':editor', ':eyes', ':hybrid'
