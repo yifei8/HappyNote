@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">hybrid</string>
+    <string name="title_activity_hybrid">HybridActivity</string>
+    <string name="button_name">开始演示</string>
 </resources>

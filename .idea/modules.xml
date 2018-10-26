@@ -7,7 +7,6 @@
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
       <module fileurl="file://$PROJECT_DIR$/editor/editor.iml" filepath="$PROJECT_DIR$/editor/editor.iml" />
       <module fileurl="file://$PROJECT_DIR$/eyes/eyes.iml" filepath="$PROJECT_DIR$/eyes/eyes.iml" />
-      <module fileurl="file://$PROJECT_DIR$/eyes/eyes.iml" filepath="$PROJECT_DIR$/eyes/eyes.iml" />
       <module fileurl="file://$PROJECT_DIR$/hybrid/hybrid.iml" filepath="$PROJECT_DIR$/hybrid/hybrid.iml" />
       <module fileurl="file://$PROJECT_DIR$/router/router.iml" filepath="$PROJECT_DIR$/router/router.iml" />
     </modules>

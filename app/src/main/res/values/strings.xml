@@ -2,5 +2,5 @@
     <string name="app_name">HappyNote</string>
     <string name="title_home">EyesActivity</string>
     <string name="title_dashboard">EditActivity</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_notifications">HybridActivity</string>
 </resources>

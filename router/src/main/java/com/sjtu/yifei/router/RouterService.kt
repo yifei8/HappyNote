@@ -3,6 +3,7 @@ package com.sjtu.yifei.router
 import com.sjtu.yifei.annotation.Go
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_EDITOR
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_EYES
+import com.sjtu.yifei.router.RouterPath.LAUNCHER_HYBRID
 import com.sjtu.yifei.router.RouterPath.NEED_LOGIN
 
 interface RouterService {
@@ -12,6 +13,9 @@ interface RouterService {
 
     @Go(LAUNCHER_EYES)
     fun openEyesUi():Boolean
+
+    @Go(LAUNCHER_HYBRID)
+    fun openHybridUi():Boolean
 
     @Go(NEED_LOGIN)
     fun getILoginProviderImpl(): ILoginProvider

@@ -28,6 +28,9 @@ class MainActivity : BaseActivity() {
             }
             R.id.navigation_notifications -> {
                 message.setText(R.string.title_notifications)
+                message.setOnClickListener {
+                    Routerfit.register(RouterService::class.java).openHybridUi()
+                }
                 return@OnNavigationItemSelectedListener true
             }
         }
