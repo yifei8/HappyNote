@@ -11,8 +11,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/business" />
             <option value="$PROJECT_DIR$/editor" />
-            <option value="$PROJECT_DIR$/eyes" />
             <option value="$PROJECT_DIR$/hybrid" />
             <option value="$PROJECT_DIR$/router" />
           </set>

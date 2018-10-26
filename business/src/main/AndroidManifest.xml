@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.sjtu.yifei.business">
+
+    <application>
+        <activity android:name=".Bus1Activity"
+            android:label="@string/title_activity_bus1"
+            android:theme="@style/AppTheme.NoActionBar"/>
+    </application>
+
+</manifest>

@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.sjtu.yifei.autoinject'
+
 autoinject {
     isDebug = true //是否在gradle console 中输出transform log
 }
@@ -51,8 +51,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     kapt yifei.auto_complier
 
+    implementation project(path:':business')
     implementation project(path:':editor')
-    implementation project(path:':eyes')
     implementation project(path:':hybrid')
 
     testImplementation testSupport.junit

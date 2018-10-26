@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
+import android.webkit.WebView
 import com.github.lzyzsd.jsbridge.CallBackFunction
 import com.github.lzyzsd.jsbridge.DefaultHandler
 import kotlinx.android.synthetic.main.hybrid_fragment.*
@@ -45,6 +46,11 @@ class HybridFragment : Fragment() {
 
         webView.setDefaultHandler(DefaultHandler())
         webView.webChromeClient = object : WebChromeClient() {
+
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                super.onProgressChanged(view, newProgress)
+                Log.d(TAG, "newProgress -> $newProgress")
+            }
 
             fun openFileChooser(uploadMsg: ValueCallback<Uri>, AcceptType: String, capture: String) {
                 this.openFileChooser(uploadMsg)
