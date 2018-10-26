@@ -2,5 +2,5 @@ package com.sjtu.yifei.router
 
 
 interface ILoginProvider {
-    fun login(): String
+    fun login(): Boolean
 }

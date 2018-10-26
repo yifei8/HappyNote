@@ -1,1 +1,1 @@
-include ':app', ':base', ':router', ':editor', ':hybrid', ':business'
+include ':app', ':base', ':router', ':editor', ':hybrid', ':business', ':login'

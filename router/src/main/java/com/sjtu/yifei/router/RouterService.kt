@@ -4,9 +4,13 @@ import com.sjtu.yifei.annotation.Go
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_EDITOR
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_BUS1
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_HYBRID
+import com.sjtu.yifei.router.RouterPath.LAUNCHER_LOGIN
 import com.sjtu.yifei.router.RouterPath.NEED_LOGIN
 
 interface RouterService {
+
+    @Go(LAUNCHER_LOGIN)
+    fun openLoginUi():Boolean
 
     @Go(LAUNCHER_EDITOR)
     fun openEditorUi():Boolean
