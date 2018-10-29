@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.text.TextUtils
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -21,9 +22,17 @@ class HybridFragment : Fragment() {
 
     companion object {
         const val TAG = "HybridFragment"
-        fun newInstance() = HybridFragment()
+        private const val ARG_URL_KEY = "hybrid_url_key"
+        fun newInstance(url: String): HybridFragment {
+            val fragment = HybridFragment()
+            val args = Bundle()
+            args.putString(ARG_URL_KEY, url)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
+    private var mUrl: String = ""
     private val RESULT_CODE = 0
     lateinit var mUploadMessage: ValueCallback<Uri>
 
@@ -68,7 +77,13 @@ class HybridFragment : Fragment() {
             }
         }
 
-        webView.loadUrl("file:///android_asset/demo.html")
+        mUrl = arguments!!.getString(ARG_URL_KEY)
+        if (!TextUtils.isEmpty(mUrl)) {
+            webView.loadUrl(mUrl)
+        } else {
+            webView.loadUrl("file:///android_asset/demo.html")
+        }
+
 
         webView.registerHandler("submitFromWeb") { data, function ->
             Log.i(TAG, "handler = submitFromWeb, data from web = $data")

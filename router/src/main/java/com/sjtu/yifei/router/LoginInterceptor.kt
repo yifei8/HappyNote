@@ -12,7 +12,7 @@ class LoginInterceptor : AInterceptor {
     override fun intercept(chain: AInterceptor.Chain) {
         Log.e(TAG, "path:" + chain.path())
         //需要登录
-        if (RouterPath.LAUNCHER_HYBRID.equals(chain.path(), ignoreCase = true)) {
+        if (RouterPath.LAUNCHER_BUS1.equals(chain.path(), ignoreCase = true)) {
             val iProvider = Routerfit.register(RouterService::class.java).getILoginProviderImpl()
             iProvider.login()
         } else {
