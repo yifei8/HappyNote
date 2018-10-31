@@ -14,28 +14,24 @@ class MainActivity : BaseActivity() {
         when (item.itemId) {
             R.id.navigation_home -> {
                 message.setText(R.string.title_home)
-                message.setOnClickListener {
-                    Routerfit.register(RouterService::class.java).openBus1Ui()
-                }
+                type_navigation = R.id.navigation_home
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
                 message.setText(R.string.title_dashboard)
-                message.setOnClickListener {
-                    Routerfit.register(RouterService::class.java).openEditorUi()
-                }
+                type_navigation = R.id.navigation_dashboard
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_notifications -> {
                 message.setText(R.string.title_notifications)
-                message.setOnClickListener {
-                    Routerfit.register(RouterService::class.java).openHybridUi("https://www.baidu.com")
-                }
+                type_navigation = R.id.navigation_notifications
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
     }
+
+    private var type_navigation: Int = R.id.navigation_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +41,13 @@ class MainActivity : BaseActivity() {
             setDisplayShowHomeEnabled(true)
             setTitle(R.string.app_name)
         }
-
+        message.setOnClickListener {
+            when (type_navigation) {
+                R.id.navigation_home -> Routerfit.register(RouterService::class.java).openBus1Ui()
+                R.id.navigation_dashboard -> Routerfit.register(RouterService::class.java).openEditorUi()
+                R.id.navigation_notifications -> Routerfit.register(RouterService::class.java).openHybridUi("www.baidu.com")
+            }
+        }
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
 

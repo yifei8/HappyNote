@@ -46,6 +46,9 @@ class HybridActivity : BaseActivity() {
         initWebChromeClient()
 
         if (!TextUtils.isEmpty(mUrl)) {
+            if (mUrl.startsWith("www.")) {
+                mUrl = "https://$mUrl"
+            }
             webView.loadUrl(mUrl)
         }
     }
