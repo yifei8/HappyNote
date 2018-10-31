@@ -8,6 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.KeyEvent
+import android.view.View
 import android.webkit.*
 import com.sjtu.yifei.annotation.Route
 import com.sjtu.yifei.base.BaseActivity
@@ -22,10 +23,11 @@ import kotlinx.android.synthetic.main.hybrid_activity.*
 class HybridActivity : BaseActivity() {
 
     companion object {
-        const val TAG = "HybridFragment"
+        const val TAG = "HybridActivity"
         const val EXTRA_SEARCH_KEY = "hybrid_load_url"
     }
-    private var mUrl:String = ""
+
+    private var mUrl: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -92,6 +94,10 @@ class HybridActivity : BaseActivity() {
             settings.cacheMode = WebSettings.LOAD_CACHE_ONLY
         }
 
+        if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            WebView.setWebContentsDebuggingEnabled(true)
+        }
+
         LogUtil.e(TAG, "webView.context.cacheDir.absolutePath:" + webView.context.cacheDir.absolutePath)
     }
 
@@ -99,11 +105,13 @@ class HybridActivity : BaseActivity() {
         webView.webViewClient = object : BridgeWebViewClient(webView) {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                //todo
+                progressBar.visibility = View.VISIBLE
             }
 
             override fun onCustomPageFinished(view: WebView?, url: String?) {
                 super.onCustomPageFinished(view, url)
+                progressBar.progress = 100
+                progressBar.visibility = View.GONE
             }
 
             override fun onCustomShouldOverrideUrlLoading(view: WebView, url: String): Boolean {
@@ -131,14 +139,13 @@ class HybridActivity : BaseActivity() {
 
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-                LogUtil.d(TAG, "newProgress -> $newProgress")
+                progressBar.progress = newProgress - 5
             }
 
             override fun onReceivedTitle(view: WebView?, title: String?) {
                 super.onReceivedTitle(view, title)
                 setTitle(title)
             }
-
         }
     }
 

@@ -65,16 +65,7 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
     private void init() {
 		this.setVerticalScrollBarEnabled(false);
 		this.setHorizontalScrollBarEnabled(false);
-		this.getSettings().setJavaScriptEnabled(true);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WebView.setWebContentsDebuggingEnabled(true);
-        }
-		this.setWebViewClient(generateBridgeWebViewClient());
 	}
-
-    protected BridgeWebViewClient generateBridgeWebViewClient() {
-        return new BridgeWebViewClient(this);
-    }
 
     /**
      * 获取到CallBackFunction data执行调用并且从数据集移除
