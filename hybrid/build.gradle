@@ -27,8 +27,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     kapt yifei.auto_complier
     api project(path: ':router')
-    //android java and javascript bridge, inspired by wechat webview jsbridge
-    implementation 'com.github.lzyzsd:jsbridge:1.0.4'
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner
