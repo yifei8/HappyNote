@@ -1,6 +1,7 @@
 package com.sjtu.yifei.happynote
 
 import com.sjtu.yifei.base.BaseApplication
+import com.sjtu.yifei.base.util.AppExecutors
 import com.sjtu.yifei.route.Routerfit
 
 /**
@@ -20,5 +21,7 @@ class GLApplication: BaseApplication() {
     private fun initConfig() {
         //注册路由
         Routerfit.init(this)
+
+        var appExecutors = AppExecutors()
     }
 }

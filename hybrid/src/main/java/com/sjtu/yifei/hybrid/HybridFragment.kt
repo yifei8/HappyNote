@@ -12,7 +12,6 @@ import android.view.ViewGroup
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import com.github.lzyzsd.jsbridge.CallBackFunction
 import com.github.lzyzsd.jsbridge.DefaultHandler
 import kotlinx.android.synthetic.main.hybrid_fragment.*
 import java.io.Serializable
@@ -43,15 +42,6 @@ class HybridFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-
-        button.setOnClickListener {
-            webView.callHandler("functionInJs", "data from java", object : CallBackFunction {
-                override fun onCallBack(data: String?) {
-                    Log.i(TAG, "response data from js $data")
-                }
-
-            })
-        }
 
         webView.setDefaultHandler(DefaultHandler())
         webView.webChromeClient = object : WebChromeClient() {
