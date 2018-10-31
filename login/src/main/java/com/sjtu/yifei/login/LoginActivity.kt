@@ -22,6 +22,7 @@ import android.widget.ArrayAdapter
 import android.widget.TextView
 import com.sjtu.yifei.annotation.Route
 import com.sjtu.yifei.base.BaseActivity
+import com.sjtu.yifei.route.Routerfit
 import com.sjtu.yifei.router.RouterPath
 import kotlinx.android.synthetic.main.activity_login.*
 import java.util.*
@@ -278,6 +279,7 @@ class LoginActivity : BaseActivity(), LoaderCallbacks<Cursor> {
             showProgress(false)
 
             if (success!!) {
+                Routerfit.setResult(Routerfit.RESULT_OK, "")
                 finish()
             } else {
                 password.error = getString(R.string.error_incorrect_password)

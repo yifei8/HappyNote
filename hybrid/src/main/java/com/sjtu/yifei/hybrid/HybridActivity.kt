@@ -26,7 +26,7 @@ class HybridActivity : BaseActivity() {
 
     companion object {
         const val TAG = "HybridActivity"
-        const val EXTRA_SEARCH_KEY = "hybrid_load_url"
+        const val EXTRA_SEARCH_KEY = "url"
     }
 
     private var mUrl: String = ""

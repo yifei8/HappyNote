@@ -1,8 +1,11 @@
 package com.sjtu.yifei.router
 
 import android.util.Log
+import android.widget.Toast
 import com.sjtu.yifei.annotation.Interceptor
 import com.sjtu.yifei.route.AInterceptor
+import com.sjtu.yifei.route.ActivityCallback
+import com.sjtu.yifei.route.ActivityLifecycleMonitor
 import com.sjtu.yifei.route.Routerfit
 
 
@@ -13,8 +16,14 @@ class LoginInterceptor : AInterceptor {
         Log.e(TAG, "path:" + chain.path())
         //需要登录
         if (RouterPath.LAUNCHER_BUS1.equals(chain.path(), ignoreCase = true)) {
-            val iProvider = Routerfit.register(RouterService::class.java).getILoginProviderImpl()
-            iProvider.login()
+            Routerfit.register(RouterService::class.java).openLoginUi(ActivityCallback { result, data ->
+                if (result == Routerfit.RESULT_OK) {//登录成功
+                    Toast.makeText(ActivityLifecycleMonitor.getTopActivity(), "登录成功", Toast.LENGTH_SHORT).show()
+                    chain.proceed()
+                } else {
+                    Toast.makeText(ActivityLifecycleMonitor.getTopActivity(), "请先完成登录", Toast.LENGTH_SHORT).show()
+                }
+            })
         } else {
             chain.proceed()
         }
