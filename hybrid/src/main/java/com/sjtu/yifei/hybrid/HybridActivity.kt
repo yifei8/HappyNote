@@ -8,6 +8,8 @@ import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.webkit.*
 import com.sjtu.yifei.annotation.Route
@@ -146,6 +148,22 @@ class HybridActivity : BaseActivity() {
                 super.onReceivedTitle(view, title)
                 setTitle(title)
             }
+        }
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.hybrid_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            R.id.hybrid_menu_refresh -> {
+                webView.reload()
+                return true
+            }
+            else -> return super.onOptionsItemSelected(item)
         }
     }
 

@@ -2,4 +2,5 @@
     <string name="app_name">hybrid</string>
     <string name="title_activity_hybrid">HybridActivity</string>
     <string name="button_name">开始演示</string>
+    <string name="hybrid_menu_refresh">刷新</string>
 </resources>
