@@ -27,14 +27,17 @@ import java.io.File
 class HybridActivity : BaseActivity() {
 
     companion object {
-        const val TAG = "HybridActivity"
         const val EXTRA_SEARCH_KEY = "url"
     }
 
     private var mUrl: String = ""
 
+    private var currentTime: Long = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        currentTime = System.currentTimeMillis()
+
         setContentView(R.layout.hybrid_activity)
         setupActionBar(R.id.toolbar) {
             setDisplayHomeAsUpEnabled(true)
@@ -42,11 +45,8 @@ class HybridActivity : BaseActivity() {
         }
         mUrl = intent.getStringExtra(EXTRA_SEARCH_KEY)
         initWebSettings()
-
         initWebViewClient()
-
         initWebChromeClient()
-
         if (!TextUtils.isEmpty(mUrl)) {
             if (mUrl.startsWith("www.")) {
                 mUrl = "https://$mUrl"
@@ -57,7 +57,9 @@ class HybridActivity : BaseActivity() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun initWebSettings() {
-
+        webView.removeJavascriptInterface("searchBoxJavaBridge_")
+        webView.removeJavascriptInterface("accessibilityTraversal")
+        webView.removeJavascriptInterface("accessibility")
         val settings = webView.settings
         //支持JS
         settings.javaScriptEnabled = true
@@ -103,8 +105,11 @@ class HybridActivity : BaseActivity() {
             settings.cacheMode = WebSettings.LOAD_CACHE_ONLY
         }
 
-        if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            WebView.setWebContentsDebuggingEnabled(true)
+        /* if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+             WebView.setWebContentsDebuggingEnabled(true)
+         }*/
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            settings.safeBrowsingEnabled = true
         }
 
     }
@@ -120,6 +125,7 @@ class HybridActivity : BaseActivity() {
                 super.onCustomPageFinished(view, url)
                 progressBar.progress = 100
                 progressBar.visibility = View.GONE
+                LogUtil.d(TAG, "HybridActivity load web view cost:${System.currentTimeMillis() - currentTime}")
             }
 
             override fun onCustomShouldOverrideUrlLoading(view: WebView, url: String): Boolean {
