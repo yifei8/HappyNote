@@ -5,7 +5,7 @@ import com.sjtu.yifei.annotation.Route
 import com.sjtu.yifei.base.BaseActivity
 import com.sjtu.yifei.base.util.LogUtil
 import com.sjtu.yifei.base.util.setupActionBar
-import com.sjtu.yifei.eyes.api.ApiService
+import com.sjtu.yifei.business.api.ApiService
 import com.sjtu.yifei.eyes.bean.HomeBean
 import com.sjtu.yifei.router.RouterPath
 import io.reactivex.android.schedulers.AndroidSchedulers

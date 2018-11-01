@@ -1,6 +1,5 @@
-package com.sjtu.yifei.eyes.api
+package com.sjtu.yifei.business.api
 
-import com.sjtu.yifei.business.api.RetrofitManager
 import com.sjtu.yifei.eyes.bean.AuthorInfoBean
 import com.sjtu.yifei.eyes.bean.CategoryBean
 import com.sjtu.yifei.eyes.bean.HomeBean
