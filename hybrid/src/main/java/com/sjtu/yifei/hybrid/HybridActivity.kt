@@ -14,12 +14,14 @@ import android.view.View
 import android.webkit.*
 import com.sjtu.yifei.annotation.Route
 import com.sjtu.yifei.base.BaseActivity
+import com.sjtu.yifei.base.util.FileUtil
 import com.sjtu.yifei.base.util.LogUtil
 import com.sjtu.yifei.base.util.NetworkUtil
 import com.sjtu.yifei.base.util.setupActionBar
 import com.sjtu.yifei.hybrid.web.BridgeWebViewClient
 import com.sjtu.yifei.router.RouterPath
 import kotlinx.android.synthetic.main.hybrid_activity.*
+import java.io.File
 
 @Route(path = RouterPath.LAUNCHER_HYBRID)
 class HybridActivity : BaseActivity() {
@@ -77,8 +79,10 @@ class HybridActivity : BaseActivity() {
         settings.databaseEnabled = true
         settings.cacheMode = WebSettings.LOAD_DEFAULT
         settings.setAppCacheEnabled(true)
+        val cacheDir = FileUtil.getCacheDir(webView.context)
+        settings.setAppCachePath("$cacheDir${File.separator}webAppCache")
 
-        settings.setAppCachePath(webView.context.cacheDir.absolutePath)
+        LogUtil.e(TAG, "WebView file path is $cacheDir${File.separator}webAppCache")
 
         //设置可访问文件
         settings.allowFileAccess = true
@@ -103,7 +107,6 @@ class HybridActivity : BaseActivity() {
             WebView.setWebContentsDebuggingEnabled(true)
         }
 
-        LogUtil.e(TAG, "webView.context.cacheDir.absolutePath:" + webView.context.cacheDir.absolutePath)
     }
 
     private fun initWebViewClient() {

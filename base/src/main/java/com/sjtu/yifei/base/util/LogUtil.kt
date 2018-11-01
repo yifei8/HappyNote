@@ -22,7 +22,7 @@ class LogUtil {
 
         fun v(tag: String, msg: String) {
             if (enable) {
-                Log.d(tag, msg)
+                Log.v(tag, msg)
             }
         }
 
@@ -34,13 +34,13 @@ class LogUtil {
 
         fun i(tag: String, msg: String) {
             if (enable) {
-                Log.d(tag, msg)
+                Log.i(tag, msg)
             }
         }
 
         fun e(tag: String, msg: String) {
             if (enable) {
-                Log.d(tag, msg)
+                Log.e(tag, msg)
             }
         }
 
