@@ -1,6 +1,6 @@
 package com.sjtu.yifei.eyes.api
 
-import com.sjtu.yifei.base.NetManager
+import com.sjtu.yifei.business.api.RetrofitManager
 import com.sjtu.yifei.eyes.bean.AuthorInfoBean
 import com.sjtu.yifei.eyes.bean.CategoryBean
 import com.sjtu.yifei.eyes.bean.HomeBean
@@ -11,7 +11,7 @@ import retrofit2.http.Query
 import retrofit2.http.Url
 
 /**
- * 类描述：
+ * 类描述：https://github.com/git-xuhao/KotlinMvp
  * 创建人：yifei
  * 创建时间：2018/10/25
  * 修改人：
@@ -21,22 +21,17 @@ import retrofit2.http.Url
 interface ApiService {
 
     companion object {
-        val apiService: ApiService by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            NetManager.instance.create(ApiService::class.java, BASE_URL)
-        }
-
         private const val BASE_URL = "http://baobab.kaiyanapp.com/api/"
-
-        fun get(): ApiService {
-            return NetManager.instance.create(ApiService::class.java, BASE_URL)
+        val apiService: ApiService by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            RetrofitManager.instance.create(ApiService::class.java, BASE_URL)
         }
     }
 
     /**
      * 首页精选
      */
-    @GET("v2/feed?")
-    fun getFirstHomeData(@Query("num") num: Int): Observable<HomeBean>
+    @GET("v2/feed")
+    fun getFirstHomeData(): Observable<HomeBean>
 
     /**
      * 根据 nextPageUrl 请求数据下一页数据

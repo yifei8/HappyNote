@@ -1,6 +1,5 @@
 package com.sjtu.yifei.hybrid.web;
 
-import android.graphics.Bitmap;
 import android.os.Build;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
@@ -27,7 +26,6 @@ public class BridgeWebViewClient extends WebViewClient {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-
         if (url.startsWith(BridgeUtil.YY_RETURN_DATA)) { // 如果是返回数据
             webView.handlerReturnData(url);
             return true;
@@ -39,7 +37,6 @@ public class BridgeWebViewClient extends WebViewClient {
         }
     }
 
-    // 增加shouldOverrideUrlLoading在api》=24时
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -58,14 +55,9 @@ public class BridgeWebViewClient extends WebViewClient {
             } else {
                 return this.onCustomShouldOverrideUrlLoading(view, url) || super.shouldOverrideUrlLoading(view, request);
             }
-        }else {
+        } else {
             return super.shouldOverrideUrlLoading(view, request);
         }
-    }
-
-    @Override
-    public void onPageStarted(WebView view, String url, Bitmap favicon) {
-        super.onPageStarted(view, url, favicon);
     }
 
     @Override
@@ -81,7 +73,7 @@ public class BridgeWebViewClient extends WebViewClient {
             webView.setStartupMessage(null);
         }
 
-        onCustomPageFinished(view,url);
+        onCustomPageFinished(view, url);
 
     }
 
@@ -91,11 +83,9 @@ public class BridgeWebViewClient extends WebViewClient {
     }
 
 
-    protected void onCustomPageFinished(WebView view, String url){
+    protected void onCustomPageFinished(WebView view, String url) {
 
     }
-
-
 
 
 }

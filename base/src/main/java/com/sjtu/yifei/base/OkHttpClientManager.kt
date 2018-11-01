@@ -7,12 +7,9 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-/**https://github.com/git-xuhao/KotlinMvp.git
+/**
  * 类描述：
  * 创建人：yifei
  * 创建时间：2018/10/23
@@ -20,27 +17,23 @@ import java.util.concurrent.TimeUnit
  * 修改时间：
  * 修改备注：
  */
-class NetManager private constructor() {
+class OkHttpClientManager private constructor() {
 
     companion object {
-        val instance: NetManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            NetManager()
+        val instance: OkHttpClientManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            OkHttpClientManager()
         }
     }
 
-    private var retrofitBuilder: Retrofit.Builder
+    private var clients: MutableMap<String, OkHttpClient> = HashMap()
 
-    init {//构造函数
-        retrofitBuilder = Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(getOkHttpClient())
-    }
-
-    fun <T> create(apiClass: Class<T>, baseUrl: String): T {
-        return retrofitBuilder.baseUrl(baseUrl)
-                .build()
-                .create(apiClass)
+    fun getBaseClient(key: String): OkHttpClient {
+        var client: OkHttpClient? = clients[key]
+        if (client == null) {
+            client = getOkHttpClient()
+            clients[key] = client
+        }
+        return client
     }
 
     private fun getOkHttpClient(): OkHttpClient {
@@ -50,8 +43,8 @@ class NetManager private constructor() {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return OkHttpClient.Builder()
                 .addInterceptor(addCacheInterceptor())
-                .addInterceptor(addHeaderInterceptor())
-                .addInterceptor(addQueryParameterInterceptor())
+//                .addInterceptor(addHeaderInterceptor())
+//                .addInterceptor(addQueryParameterInterceptor())
                 .addInterceptor(httpLoggingInterceptor) //日志,所有的请求响应度看到
                 .connectTimeout(60L, TimeUnit.SECONDS)
                 .readTimeout(60L, TimeUnit.SECONDS)
