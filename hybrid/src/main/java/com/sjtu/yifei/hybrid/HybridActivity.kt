@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.net.http.SslError
 import android.os.Build
 import android.os.Bundle
+import android.support.annotation.RequiresApi
 import android.text.TextUtils
 import android.view.KeyEvent
 import android.view.Menu
@@ -107,17 +108,17 @@ class HybridActivity : BaseActivity() {
 
         /* if (BuildConfig.DEBUG && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
              WebView.setWebContentsDebuggingEnabled(true)
-         }*/
+         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             settings.safeBrowsingEnabled = true
-        }
-
+        }*/
     }
 
     private fun initWebViewClient() {
         webView.webViewClient = object : BridgeWebViewClient(webView) {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
+                currentTime = System.currentTimeMillis()
                 progressBar.visibility = View.VISIBLE
             }
 
@@ -133,17 +134,21 @@ class HybridActivity : BaseActivity() {
                 return true
             }
 
+            @RequiresApi(Build.VERSION_CODES.M)
             override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
                 super.onReceivedError(view, request, error)
+                LogUtil.e(TAG, "onReceivedError: ${error?.errorCode} -> ${error?.description}")
             }
 
             @TargetApi(Build.VERSION_CODES.M)
             override fun onReceivedHttpError(view: WebView?, request: WebResourceRequest?, errorResponse: WebResourceResponse?) {
                 super.onReceivedHttpError(view, request, errorResponse)
+                LogUtil.e(TAG, "onReceivedHttpError: ${errorResponse?.statusCode} -> ${errorResponse?.reasonPhrase}")
             }
 
             override fun onReceivedSslError(view: WebView?, handler: SslErrorHandler?, error: SslError?) {
                 super.onReceivedSslError(view, handler, error)
+                LogUtil.e(TAG, "onReceivedSslError: ${error?.toString()}")
             }
         }
     }
