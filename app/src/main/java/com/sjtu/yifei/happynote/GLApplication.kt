@@ -4,6 +4,7 @@ import com.sjtu.yifei.base.BaseApplication
 import com.sjtu.yifei.base.util.AppUtils
 import com.sjtu.yifei.route.Routerfit
 import com.sjtu.yifei.router.IPerformanceProvider
+import com.sjtu.yifei.router.RouterService
 
 /**
  * 类描述：
@@ -19,7 +20,7 @@ class GLApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-        iPerformanceProvider = Routerfit.register(IPerformanceProvider::class.java)
+        iPerformanceProvider = Routerfit.register(RouterService::class.java).openIPerformanceProvider(this, true)
         /**
          * This process is dedicated to LeakCanary for heap analysis.
          * You should not init your app in this process.

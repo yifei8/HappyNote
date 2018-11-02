@@ -25,5 +25,5 @@ interface RouterService {
     fun openHybridUi(@Extra("url") url: String): Boolean
 
     @Go(I_PERFORMANCE_PROVIDER)
-    fun openPerformanceDetection(@Extra("application") application: Application, @Extra("isOpenWatcher") isOpenWatcher: Boolean): IPerformanceProvider
+    fun openIPerformanceProvider(@Extra("application") application: Application, @Extra("isOpenWatcher") isOpenWatcher: Boolean): IPerformanceProvider
 }
