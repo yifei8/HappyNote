@@ -19,6 +19,7 @@ versions.logging_interceptor = '3.10.0'
 versions.junit = '4.12'
 versions.testRunner = '1.0.2'
 versions.testEspresso = '3.0.2'
+versions.leakcanary = '1.6.2'
 ext.versions = versions
 
 def cp = [:]
@@ -53,6 +54,12 @@ net.converter_gson = "com.squareup.retrofit2:converter-gson:$versions.retrofit2"
 net.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
 net.logging_interceptor = "com.squareup.okhttp3:logging-interceptor:$versions.logging_interceptor"
 ext.net = net
+
+def canary = [:]
+canary.leakcanary_android = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
+canary.leakcanary_android_no_op = "com.squareup.leakcanary:leakcanary-android-no-op:$versions.leakcanary"
+canary.leakcanary_support_fragment = "com.squareup.leakcanary:leakcanary-support-fragment:$versions.leakcanary"
+ext.canary = canary
 
 def testSupport = [:]
 testSupport.junit = "junit:junit:$versions.junit"

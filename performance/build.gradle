@@ -1,32 +1,16 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
-
-apply plugin: 'com.sjtu.yifei.autoinject'
-
-autoinject {
-    isDebug = true //是否在gradle console 中输出transform log
-}
 
 android {
     compileSdkVersion versions.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.sjtu.yifei.happynote"
-
         minSdkVersion versions.min_sdk
         targetSdkVersion versions.target_sdk
-        versionCode 1
-        versionName "1.0"
 
-        vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     buildTypes {
@@ -36,26 +20,17 @@ android {
         }
     }
 
-    dexOptions {
-        javaMaxHeapSize "4g"
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-
 }
-
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     kapt yifei.auto_complier
+    api project(path: ':router')
 
-    implementation project(path:':login')
-    implementation project(path:':business')
-    implementation project(path:':editor')
-    implementation project(path:':hybrid')
-    implementation project(path:':performance')
+    debugImplementation canary.leakcanary_android
+    releaseImplementation canary.leakcanary_android_no_op
+    // Optional, if you use support library fragments:
+    debugImplementation canary.leakcanary_support_fragment
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner

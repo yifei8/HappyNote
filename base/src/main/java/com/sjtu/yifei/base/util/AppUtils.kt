@@ -2,9 +2,11 @@ package com.sjtu.yifei.base.util
 
 import android.annotation.SuppressLint
 import android.app.ActivityManager
+import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
+import android.text.TextUtils
 import java.security.MessageDigest
 
 /**
@@ -21,6 +23,37 @@ class AppUtils {
     }
 
     companion object {
+
+        /**
+         * 判断是否当前APP主进程
+         *
+         * @param application
+         * @return
+         */
+        fun isAppProcess(application: Application): Boolean {
+            val processName = getProcessName(application, android.os.Process.myPid())
+            return if (!TextUtils.isEmpty(processName)) {
+                processName == getAppPackageName()
+            } else false
+        }
+
+        /**
+         * @return null may be returned if the specified process not found
+         */
+        private fun getProcessName(cxt: Context, pid: Int): String? {
+            val am = cxt.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+            val runningApps = am.runningAppProcesses ?: return null
+            for (procInfo in runningApps) {
+                if (procInfo.pid == pid) {
+                    return procInfo.processName
+                }
+            }
+            return null
+        }
+
+        private fun getAppPackageName(): String {
+            return "com.sjtu.yifei.happynote"
+        }
 
         /**
          * 得到软件版本号

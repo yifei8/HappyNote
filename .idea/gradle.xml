@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/editor" />
             <option value="$PROJECT_DIR$/hybrid" />
             <option value="$PROJECT_DIR$/login" />
+            <option value="$PROJECT_DIR$/performance" />
             <option value="$PROJECT_DIR$/router" />
           </set>
         </option>
