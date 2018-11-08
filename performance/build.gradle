@@ -27,10 +27,10 @@ dependencies {
     kapt yifei.auto_complier
     api project(path: ':router')
 
-    debugImplementation canary.leakcanary_android
-    releaseImplementation canary.leakcanary_android_no_op
+    debugApi canary.leakcanary_android
+    releaseApi canary.leakcanary_android_no_op
     // Optional, if you use support library fragments:
-    debugImplementation canary.leakcanary_support_fragment
+    debugApi canary.leakcanary_support_fragment
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner

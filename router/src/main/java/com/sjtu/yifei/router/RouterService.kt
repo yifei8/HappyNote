@@ -1,10 +1,8 @@
 package com.sjtu.yifei.router
 
-import android.app.Application
 import com.sjtu.yifei.annotation.Extra
 import com.sjtu.yifei.annotation.Go
 import com.sjtu.yifei.route.ActivityCallback
-import com.sjtu.yifei.router.RouterPath.I_PERFORMANCE_PROVIDER
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_BUS1
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_EDITOR
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_HYBRID
@@ -23,7 +21,4 @@ interface RouterService {
 
     @Go(LAUNCHER_HYBRID)
     fun openHybridUi(@Extra("url") url: String): Boolean
-
-    @Go(I_PERFORMANCE_PROVIDER)
-    fun openIPerformanceProvider(@Extra("application") application: Application, @Extra("isOpenWatcher") isOpenWatcher: Boolean): IPerformanceProvider
 }

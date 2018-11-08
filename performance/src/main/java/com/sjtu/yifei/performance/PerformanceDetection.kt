@@ -2,9 +2,6 @@ package com.sjtu.yifei.performance
 
 import android.app.Application
 import android.support.v4.app.Fragment
-import com.sjtu.yifei.annotation.Route
-import com.sjtu.yifei.router.IPerformanceProvider
-import com.sjtu.yifei.router.RouterPath
 import com.squareup.leakcanary.AndroidExcludedRefs
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
@@ -17,52 +14,48 @@ import com.squareup.leakcanary.RefWatcher
  * 修改时间：
  * 修改备注：
  */
-@Route(path = RouterPath.I_PERFORMANCE_PROVIDER)
-class PerformanceDetection constructor(private val application: Application, private val isOpenWatcher: Boolean) : IPerformanceProvider {
+class PerformanceDetection private constructor() {
+
+    companion object {
+        val instance: PerformanceDetection by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            PerformanceDetection()
+        }
+    }
 
     private var refWatcher: RefWatcher? = null
-    private var isInAnalyzerProcess: Boolean = false
 
-    override fun isInAnalyzerProcess(): Boolean {
-        return isInAnalyzerProcess
+    fun isInAnalyzerProcess(application: Application): Boolean {
+        return LeakCanary.isInAnalyzerProcess(application)
     }
 
     /**
      * 观察fragment内存泄漏
      * @param fragment
      */
-    override fun watcherFragment(fragment: Fragment) {
-        if (refWatcher != null) {
-            refWatcher!!.watch(fragment)
-        }
+    fun watcherFragment(fragment: Fragment) {
+        refWatcher?.watch(fragment)
     }
 
     /**
      * 必须在UI线程中初始化
      */
-    override fun initLeakCanary() {
+    fun initLeakCanary(application: Application, isOpenWatcher: Boolean) {
         if (BuildConfig.DEBUG && isOpenWatcher) {
-            if (LeakCanary.isInAnalyzerProcess(application)) {
-                // This process is dedicated to LeakCanary for heap analysis.
-                // You should not init your app in this process.
-                isInAnalyzerProcess = true
-            } else {
-                if (refWatcher == null) {
-                    val excludedRefs = AndroidExcludedRefs.createAppDefaults()
-                            .instanceField("android.view.inputmethod.InputMethodManager", "sInstance")
-                            .instanceField("android.view.inputmethod.InputMethodManager", "mLastSrvView")
-                            .instanceField("android.support.v7.widget.AppCompatEditText", "mContext")
-                            .instanceField("com.android.internal.policy.DecorView", "mContextRoot")
-                            .instanceField("android.widget.LinearLayout", "mContext")
-                            .instanceField("com.android.internal.policy.PhoneWindow\$DecorView", "mContext")
-                            .instanceField("android.support.v7.widget.SearchView\$SearchAutoComplete", "mContext")
-                            .build()
+            if (refWatcher == null) {
+                val excludedRefs = AndroidExcludedRefs.createAppDefaults()
+                        .instanceField("android.view.inputmethod.InputMethodManager", "sInstance")
+                        .instanceField("android.view.inputmethod.InputMethodManager", "mLastSrvView")
+                        .instanceField("android.support.v7.widget.AppCompatEditText", "mContext")
+                        .instanceField("com.android.internal.policy.DecorView", "mContextRoot")
+                        .instanceField("android.widget.LinearLayout", "mContext")
+                        .instanceField("com.android.internal.policy.PhoneWindow\$DecorView", "mContext")
+                        .instanceField("android.support.v7.widget.SearchView\$SearchAutoComplete", "mContext")
+                        .build()
 
-                    refWatcher = LeakCanary.refWatcher(application)
-                            .listenerServiceClass(AppLeakCanaryService::class.java)
-                            .excludedRefs(excludedRefs)
-                            .buildAndInstall()
-                }
+                refWatcher = LeakCanary.refWatcher(application)
+                        .listenerServiceClass(AppLeakCanaryService::class.java)
+                        .excludedRefs(excludedRefs)
+                        .buildAndInstall()
             }
         }
     }

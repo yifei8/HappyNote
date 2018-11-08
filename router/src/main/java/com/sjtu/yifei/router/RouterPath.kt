@@ -10,6 +10,4 @@ object RouterPath {
 
     const val LAUNCHER_HYBRID = "hybrid/HybridActivity"
 
-    const val I_PERFORMANCE_PROVIDER = "i/performance/provider"
-
 }

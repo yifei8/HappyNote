@@ -108,6 +108,9 @@ class LoginActivity : BaseActivity(), LoaderCallbacks<Cursor> {
      * errors are presented and no actual login attempt is made.
      */
     private fun attemptLogin() {
+        Routerfit.setResult(Routerfit.RESULT_OK, "")
+        finish()
+        return
         if (mAuthTask != null) {
             return
         }
