@@ -43,9 +43,10 @@ class PerformanceDetection private constructor() {
         if (BuildConfig.DEBUG && isOpenWatcher) {
             if (refWatcher == null) {
                 val excludedRefs = AndroidExcludedRefs.createAppDefaults()
-                        .instanceField("android.view.inputmethod.InputMethodManager", "sInstance")
+                        .staticField("android.view.inputmethod.InputMethodManager", "sInstance")
                         .instanceField("android.view.inputmethod.InputMethodManager", "mLastSrvView")
                         .instanceField("android.support.v7.widget.AppCompatEditText", "mContext")
+                        .instanceField("com.android.internal.policy.DecorView", "mPressGestureDetector")
                         .instanceField("com.android.internal.policy.DecorView", "mContextRoot")
                         .instanceField("android.widget.LinearLayout", "mContext")
                         .instanceField("com.android.internal.policy.PhoneWindow\$DecorView", "mContext")
@@ -53,8 +54,8 @@ class PerformanceDetection private constructor() {
                         .build()
 
                 refWatcher = LeakCanary.refWatcher(application)
-                        .listenerServiceClass(AppLeakCanaryService::class.java)
                         .excludedRefs(excludedRefs)
+                        .listenerServiceClass(AppLeakCanaryService::class.java)
                         .buildAndInstall()
             }
         }
