@@ -1,12 +1,16 @@
 package com.sjtu.yifei.editor.ui
 
 import android.os.Bundle
-import android.view.MotionEvent
+import android.widget.Toast
 import com.sjtu.yifei.annotation.Route
 import com.sjtu.yifei.base.BaseActivity
 import com.sjtu.yifei.base.util.setupActionBar
 import com.sjtu.yifei.editor.R
+import com.sjtu.yifei.route.ActivityCallback
+import com.sjtu.yifei.route.Routerfit
 import com.sjtu.yifei.router.RouterPath.LAUNCHER_EDITOR
+import com.sjtu.yifei.router.RouterService
+import kotlinx.android.synthetic.main.content_editor.*
 
 @Route(path = LAUNCHER_EDITOR)
 open class EditorActivity : BaseActivity() {
@@ -19,23 +23,22 @@ open class EditorActivity : BaseActivity() {
             setDisplayShowHomeEnabled(true)
         }
 
-        init()
+        initData()
     }
 
-    fun init() {
+    private fun initData() {
+        tv.setOnClickListener {
+            Routerfit.register(RouterService::class.java).openHybridUi("https://www.taobao.com", ActivityCallback { result, data ->
+                Toast.makeText(MainActivity@ this.baseContext, "${result == Routerfit.RESULT_OK}     $data", Toast.LENGTH_SHORT).show()
+            })
+        }
+        tv_finish_success.setOnClickListener {
+            Routerfit.setResult(Routerfit.RESULT_OK, "调用 editor 成功")
+            finish()
+        }
     }
 
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        // 返回true，那么代表事件就此消费，不会继续往别的地方传了，事件终止
-        return super.dispatchTouchEvent(ev)
-    }
 
-    override fun onTouchEvent(event: MotionEvent?): Boolean {
-        return super.onTouchEvent(event)
-    }
 
-    override fun onUserInteraction() {
-        super.onUserInteraction()
-    }
 
 }

@@ -21,15 +21,16 @@
     </android.support.design.widget.AppBarLayout>
 
     <RelativeLayout
+        android:id="@+id/webView_root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <!-- webview 演示web调用Java -->
-        <com.sjtu.yifei.hybrid.web.BridgeWebView
+       <!-- <com.sjtu.yifei.hybrid.web.BridgeWebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent" />-->
 
         <ProgressBar
             android:id="@+id/progressBar"

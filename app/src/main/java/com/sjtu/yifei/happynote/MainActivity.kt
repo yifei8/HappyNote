@@ -2,8 +2,10 @@ package com.sjtu.yifei.happynote
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.widget.Toast
 import com.sjtu.yifei.base.BaseActivity
 import com.sjtu.yifei.base.util.setupActionBar
+import com.sjtu.yifei.route.ActivityCallback
 import com.sjtu.yifei.route.Routerfit
 import com.sjtu.yifei.router.RouterService
 import kotlinx.android.synthetic.main.activity_main.*
@@ -44,7 +46,9 @@ class MainActivity : BaseActivity() {
         message.setOnClickListener {
             when (type_navigation) {
                 R.id.navigation_home -> Routerfit.register(RouterService::class.java).openBus1Ui()
-                R.id.navigation_dashboard -> Routerfit.register(RouterService::class.java).openEditorUi()
+                R.id.navigation_dashboard -> Routerfit.register(RouterService::class.java).openEditorUi(ActivityCallback { result, data ->
+                    Toast.makeText(MainActivity@ this.baseContext, "${result == Routerfit.RESULT_OK}     $data", Toast.LENGTH_SHORT).show()
+                })
                 R.id.navigation_notifications -> Routerfit.register(RouterService::class.java).openHybridUi("www.baidu.com")
             }
         }

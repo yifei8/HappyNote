@@ -16,9 +16,15 @@ interface RouterService {
     @Go(LAUNCHER_EDITOR)
     fun openEditorUi(): Boolean
 
+    @Go(LAUNCHER_EDITOR)
+    fun openEditorUi(@Extra callback: ActivityCallback): Boolean
+
     @Go(LAUNCHER_BUS1)
     fun openBus1Ui(): Boolean
 
     @Go(LAUNCHER_HYBRID)
     fun openHybridUi(@Extra("url") url: String): Boolean
+
+    @Go(LAUNCHER_HYBRID)
+    fun openHybridUi(@Extra("url") url: String, @Extra callback: ActivityCallback): Boolean
 }

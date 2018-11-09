@@ -8,10 +8,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.annotation.RequiresApi
 import android.text.TextUtils
-import android.view.KeyEvent
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
+import android.view.*
 import android.webkit.*
 import com.sjtu.yifei.annotation.Route
 import com.sjtu.yifei.base.BaseActivity
@@ -19,6 +16,7 @@ import com.sjtu.yifei.base.util.FileUtil
 import com.sjtu.yifei.base.util.LogUtil
 import com.sjtu.yifei.base.util.NetworkUtil
 import com.sjtu.yifei.base.util.setupActionBar
+import com.sjtu.yifei.hybrid.web.BridgeWebView
 import com.sjtu.yifei.hybrid.web.BridgeWebViewClient
 import com.sjtu.yifei.router.RouterPath
 import kotlinx.android.synthetic.main.hybrid_activity.*
@@ -31,6 +29,7 @@ class HybridActivity : BaseActivity() {
         const val EXTRA_SEARCH_KEY = "url"
     }
 
+    private lateinit var webView: BridgeWebView
     private var mUrl: String = ""
 
     private var currentTime: Long = 0
@@ -45,6 +44,10 @@ class HybridActivity : BaseActivity() {
             setDisplayShowHomeEnabled(true)
         }
         mUrl = intent.getStringExtra(EXTRA_SEARCH_KEY)
+
+        webView = BridgeWebView(applicationContext)
+        webView_root.addView(webView,0,ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+
         initWebSettings()
         initWebViewClient()
         initWebChromeClient()
@@ -64,8 +67,6 @@ class HybridActivity : BaseActivity() {
         val settings = webView.settings
         //支持JS
         settings.javaScriptEnabled = true
-        //支持插件
-        settings.pluginState = WebSettings.PluginState.ON
         //设置适应屏幕
         settings.useWideViewPort = true
         settings.loadWithOverviewMode = true
@@ -175,12 +176,12 @@ class HybridActivity : BaseActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
+        return when (item?.itemId) {
             R.id.hybrid_menu_refresh -> {
                 webView.reload()
-                return true
+                true
             }
-            else -> return super.onOptionsItemSelected(item)
+            else -> super.onOptionsItemSelected(item)
         }
     }
 
@@ -198,5 +199,12 @@ class HybridActivity : BaseActivity() {
         } else {
             super.onBackPressed()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        webView_root.removeView(webView)
+        webView.removeAllViews()
+        webView.destroy()
     }
 }

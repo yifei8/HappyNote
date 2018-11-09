@@ -2,7 +2,6 @@ package com.sjtu.yifei.hybrid.web;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Build;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.text.TextUtils;
@@ -38,17 +37,17 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
 	private long uniqueId = 0;
 
 	public BridgeWebView(Context context, AttributeSet attrs) {
-		super(context, attrs);
+		super(context.getApplicationContext(), attrs);
 		init();
 	}
 
 	public BridgeWebView(Context context, AttributeSet attrs, int defStyle) {
-		super(context, attrs, defStyle);
+		super(context.getApplicationContext(), attrs, defStyle);
 		init();
 	}
 
 	public BridgeWebView(Context context) {
-		super(context);
+		super(context.getApplicationContext());
 		init();
 	}
 
@@ -256,4 +255,8 @@ public class BridgeWebView extends WebView implements WebViewJavascriptBridge {
         doSend(handlerName, data, callBack);
 	}
 
+	@Override
+	public void destroy() {
+		super.destroy();
+	}
 }
