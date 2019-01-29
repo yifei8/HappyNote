@@ -47,7 +47,7 @@ class MainActivity : BaseActivity() {
             when (type_navigation) {
                 R.id.navigation_home -> Routerfit.register(RouterService::class.java).openBus1Ui()
                 R.id.navigation_dashboard -> Routerfit.register(RouterService::class.java).openEditorUi(ActivityCallback { result, data ->
-                    Toast.makeText(MainActivity@ this.baseContext, "${result == Routerfit.RESULT_OK}     $data", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(MainActivity@ this, "${result == Routerfit.RESULT_OK}     $data", Toast.LENGTH_SHORT).show()
                 })
                 R.id.navigation_notifications -> Routerfit.register(RouterService::class.java).openHybridUi("www.baidu.com")
             }
