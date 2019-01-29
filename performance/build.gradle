@@ -25,7 +25,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     kapt yifei.auto_complier
-    api project(path: ':router')
+    implementation project(path:':router')
+    api project(path:':base')
 
     debugApi canary.leakcanary_android
     releaseApi canary.leakcanary_android_no_op

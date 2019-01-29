@@ -26,7 +26,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     kapt yifei.auto_complier
-    api project(path: ':router')
+    implementation project(path:':router')
+    api project(path:':base')
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner
