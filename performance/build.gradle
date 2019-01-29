@@ -24,14 +24,12 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    kapt yifei.auto_complier
-    implementation project(path:':router')
     api project(path:':base')
 
-    debugApi canary.leakcanary_android
-    releaseApi canary.leakcanary_android_no_op
+    debugImplementation canary.leakcanary_android
+    releaseImplementation canary.leakcanary_android_no_op
     // Optional, if you use support library fragments:
-    debugApi canary.leakcanary_support_fragment
+    debugImplementation canary.leakcanary_support_fragment
 
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner
