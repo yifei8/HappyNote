@@ -22,5 +22,5 @@
 
 
 -keep class * implements com.sjtu.yifei.ioc.**{*;}
--keep class * implements com.sjtu.yifei.annotation.AutoRegisterContract{*;}
+-keep class * implements com.sjtu.yifei.annotation.InjectContract{*;}
 -keep class * implements com.sjtu.yifei.router.IPerformanceProvider{*;}

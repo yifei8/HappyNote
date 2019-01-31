@@ -51,6 +51,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     kapt yifei.auto_complier
     implementation project(path:':router')
+    implementation project(path:':base')
 
     implementation project(path:':login')
     implementation project(path:':business')

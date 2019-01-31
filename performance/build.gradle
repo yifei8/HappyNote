@@ -24,7 +24,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(path:':base')
+    implementation project(path:':base')
 
     debugImplementation canary.leakcanary_android
     releaseImplementation canary.leakcanary_android_no_op
