@@ -23,15 +23,10 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path:':base')
 
     debugImplementation canary.leakcanary_android
     releaseImplementation canary.leakcanary_android_no_op
     // Optional, if you use support library fragments:
     debugImplementation canary.leakcanary_support_fragment
-
-    testImplementation testSupport.junit
-    androidTestImplementation testSupport.testRunner
-    androidTestImplementation testSupport.testEspresso
 }
