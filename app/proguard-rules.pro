@@ -24,3 +24,34 @@
 -keep class * implements com.sjtu.yifei.ioc.**{*;}
 -keep class * implements com.sjtu.yifei.annotation.InjectContract{*;}
 -keep class * implements com.sjtu.yifei.router.IPerformanceProvider{*;}
+
+
+-dontwarn javax.annotation.**
+
+# okio
+-dontwarn okio.**
+
+# OkHttp3.0
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class okhttp3.** { *; }
+-keep interface okhttp3.** { *; }
+-dontwarn okhttp3.**
+
+# d8
+-dontwarn okhttp3.**
+-dontwarn okio.**
+-dontwarn javax.annotation.**
+-dontwarn org.conscrypt.**
+# A resource is loaded with a relative path so the package of this class must be preserved.
+-keepnames class okhttp3.internal.publicsuffix.PublicSuffixDatabase
+
+
+# retrofit2.0
+-dontnote retrofit2.Platform
+-dontwarn retrofit2.Platform$Java8
+-keepattributes Signature
+-keepattributes Exceptions
+-keepclasseswithmembers class * {
+    @retrofit2.http.* <methods>;
+}

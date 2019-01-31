@@ -29,10 +29,24 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    signingConfigs {
+        releaseconfig {
+            keyAlias 'yifei'
+            keyPassword 'yifei666'
+            storeFile file('keystore.jks')
+            storePassword 'yifei666'
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseconfig
+            debuggable false
+            jniDebuggable false
+            renderscriptDebuggable false
+            zipAlignEnabled true
         }
     }
 
@@ -48,17 +62,15 @@ android {
 
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     kapt yifei.auto_complier
-    implementation project(path:':router')
-    implementation project(path:':base')
-
-    implementation project(path:':login')
-    implementation project(path:':business')
-    implementation project(path:':editor')
-    implementation project(path:':hybrid')
-    implementation project(path:':performance')
-
+    implementation project(path: ':router')
+    implementation project(path: ':base')
+    implementation project(path: ':login')
+    implementation project(path: ':business')
+    implementation project(path: ':editor')
+    implementation project(path: ':hybrid')
+    implementation project(path: ':performance')
     testImplementation testSupport.junit
     androidTestImplementation testSupport.testRunner
     androidTestImplementation testSupport.testEspresso
