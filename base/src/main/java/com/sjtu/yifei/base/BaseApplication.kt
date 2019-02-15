@@ -25,4 +25,8 @@ open class BaseApplication : Application() {
         token = ""
     }
 
+    override fun onTerminate() {
+        super.onTerminate()
+    }
+
 }
