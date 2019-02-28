@@ -11,9 +11,14 @@ import com.sjtu.yifei.router.RouterPath
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_bus1.*
 
 @Route(path = RouterPath.LAUNCHER_BUS1)
 class Bus1Activity : BaseActivity() {
+
+    companion object {
+        const val EXTRA_POSITION = "position"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +27,10 @@ class Bus1Activity : BaseActivity() {
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
         }
+
+        val position = intent.getIntExtra(EXTRA_POSITION, -1)
+
+        tv1.text = "position: $position"
 
         subscribe(ApiService.apiService.getFirstHomeData()
                 .subscribeOn(Schedulers.io())
